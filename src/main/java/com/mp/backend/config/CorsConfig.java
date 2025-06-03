@@ -18,7 +18,12 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         
-        config.setAllowedOriginPatterns(List.of("http://localhost:4200")); // Reemplaza con tu frontend
+       config.setAllowedOriginPatterns(List.of(
+  "http://localhost:4200",
+  "https://backmp-production.up.railway.app",
+  "https://*.netlify.app"
+));
+
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
