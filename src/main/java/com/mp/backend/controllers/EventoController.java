@@ -6,7 +6,7 @@ import com.mp.backend.models.UsuarioEvento;
 import com.mp.backend.services.EventoService;
 import com.mp.backend.services.UsuarioEventoService;
 import com.mp.backend.repositories.UsuarioRepository;
-
+import com.mp.backend.repositories.EventoRepository;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -264,5 +264,10 @@ public ResponseEntity<?> cancelarInscripcion(@PathVariable Long id) {
     usuarioEventoService.cancelarInscripcion(usuario, evento);
     return ResponseEntity.ok(Map.of("mensaje", "✅ Inscripción cancelada correctamente"));
 }
+@GetMapping("/eventos/tipo/{tipoEvento}")
+public ResponseEntity<List<Evento>> obtenerPorTipo(@PathVariable String tipoEvento) {
+    return ResponseEntity.ok(eventoService.obtenerEventosPorTipo(tipoEvento));
+}
+
 
 }
