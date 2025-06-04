@@ -18,11 +18,13 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         
-       config.setAllowedOriginPatterns(List.of(
+      config.setAllowedOriginPatterns(List.of(
     "http://localhost:4200",
     "https://backmp-production.up.railway.app",
-    "https://mamasperrunasfront.netlify.app"
+    "https://mamasperrunasfront.netlify.app" // <- añade esta línea
 ));
+
+
 
 
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
