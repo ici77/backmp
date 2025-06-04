@@ -41,28 +41,7 @@ public class EventoController {
         return ResponseEntity.ok(eventoService.obtenerTodosLosEventos());
     }
 
-   @GetMapping("/{id}")
-public ResponseEntity<?> obtenerEventoPorId(@PathVariable Long id) {
-    Optional<Evento> eventoOpt = eventoService.obtenerEventoPorId(id);
-
-    if (eventoOpt.isEmpty()) {
-        return ResponseEntity.notFound().build();
-    }
-
-    Evento evento = eventoOpt.get();
-
-    // 👤 Intentar obtener el usuario autenticado
-    String email = SecurityContextHolder.getContext().getAuthentication().getName();
-    Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
-
-    if (usuarioOpt.isPresent()) {
-        Usuario usuario = usuarioOpt.get();
-        boolean yaInscrito = usuarioEventoService.estaInscrito(usuario, evento);
-        evento.setYaInscrito(yaInscrito); // ✅ Actualiza el evento con el estado de inscripción
-    }
-
-    return ResponseEntity.ok(evento);
-}
+   
 
 @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 public ResponseEntity<?> crearEventoConImagen(
@@ -267,6 +246,29 @@ public ResponseEntity<?> cancelarInscripcion(@PathVariable Long id) {
 @GetMapping("/eventos/tipo/{tipoEvento}")
 public ResponseEntity<List<Evento>> obtenerPorTipo(@PathVariable String tipoEvento) {
     return ResponseEntity.ok(eventoService.obtenerEventosPorTipo(tipoEvento));
+}
+
+@GetMapping("/{id}")
+public ResponseEntity<?> obtenerEventoPorId(@PathVariable Long id) {
+    Optional<Evento> eventoOpt = eventoService.obtenerEventoPorId(id);
+
+    if (eventoOpt.isEmpty()) {
+        return ResponseEntity.notFound().build();
+    }
+
+    Evento evento = eventoOpt.get();
+
+    // 👤 Intentar obtener el usuario autenticado
+    String email = SecurityContextHolder.getContext().getAuthentication().getName();
+    Optional<Usuario> usuarioOpt = usuarioRepository.findByEmail(email);
+
+    if (usuarioOpt.isPresent()) {
+        Usuario usuario = usuarioOpt.get();
+        boolean yaInscrito = usuarioEventoService.estaInscrito(usuario, evento);
+        evento.setYaInscrito(yaInscrito); // ✅ Actualiza el evento con el estado de inscripción
+    }
+
+    return ResponseEntity.ok(evento);
 }
 
 
