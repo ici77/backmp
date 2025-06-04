@@ -19,10 +19,11 @@ public class CorsConfig {
         CorsConfiguration config = new CorsConfiguration();
         
        config.setAllowedOriginPatterns(List.of(
-  "http://localhost:4200",
-  "https://backmp-production.up.railway.app",
-  "https://*.netlify.app"
+    "http://localhost:4200",
+    "https://backmp-production.up.railway.app",
+    "https://mamasperrunasfront.netlify.app"
 ));
+
 
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
