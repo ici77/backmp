@@ -45,6 +45,7 @@ public AuthenticationManager authenticationManager(AuthenticationConfiguration c
                 .requestMatchers(HttpMethod.GET, "/api/categories").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/replies/post/**").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**").permitAll()
+                .requestMatchers("/uploads/**").permitAll()
 
                 // Acceso autenticado
                 .requestMatchers("/api/usuarios/cambiar-password").authenticated()
