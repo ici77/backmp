@@ -73,7 +73,8 @@ public ResponseEntity<?> crearEventoConImagen(
             imagen.transferTo(new File(rutaArchivo));
 
             // Guarda la ruta relativa para usarla en el frontend si es necesario
-            evento.setImagenUrl("uploads/" + nombreArchivo);
+            evento.setImagenUrl("https://backmp-production.up.railway.app/uploads/" + nombreArchivo);
+
         } catch (IOException | IllegalStateException e) {
             e.printStackTrace();
             return ResponseEntity.status(500).body("Error al guardar imagen");

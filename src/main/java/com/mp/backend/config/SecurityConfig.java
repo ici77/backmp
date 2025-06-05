@@ -37,7 +37,8 @@ public AuthenticationManager authenticationManager(AuthenticationConfiguration c
                 // Acceso público
                 .requestMatchers("/", "/index.html", "/favicon.ico").permitAll()
                 .requestMatchers("/uploads/**").permitAll()
-                .requestMatchers("/api/auth/login", "/api/usuarios/registro").permitAll()
+               .requestMatchers("/api/usuarios/login", "/api/usuarios/registro").permitAll()
+
                 .requestMatchers("/api/holamundo").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/eventos/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
